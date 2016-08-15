@@ -1,0 +1,26 @@
+{
+  "version": "1.0.0-*",
+  "buildOptions": {
+    "emitEntryPoint": true
+  },
+  "dependencies": {
+    "Microsoft.NETCore.App": {
+      "version": "1.0.0",
+      "type": "platform"
+    },
+    "Microsoft.AspNetCore.Mvc.Core": "1.0.0",
+    "Microsoft.AspNetCore.Mvc.Formatters.Json": "1.0.0",
+    "Microsoft.AspNetCore.Server.Kestrel": "1.0.0",
+    "Microsoft.Extensions.Logging.Console": "1.0.0"
+  },
+
+  "publishOptions": {
+    "include": [
+      "Dockerfile"
+    ]
+  },
+
+  "frameworks": {
+    "netcoreapp1.0": {}
+  }
+}

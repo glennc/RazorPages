@@ -1,0 +1,12 @@
+version: '2'
+services:
+  todo.web:
+    build: ./output/Web/
+    ports:
+        - "5000:5000"
+    depends_on:
+        - todo.service
+  todo.service:
+    build: ./output/Service/
+    ports:
+        - "5000"

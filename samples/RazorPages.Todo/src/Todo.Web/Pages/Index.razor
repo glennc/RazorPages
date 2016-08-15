@@ -1,0 +1,54 @@
+﻿@using System
+@using System.Collections.Generic
+@using System.Reflection
+@using Microsoft.AspNetCore.Mvc
+@using Microsoft.AspNetCore.Mvc.Rendering
+@using RazorPages.Todo.Web
+@using System.Linq
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@inject IHtmlHelper<TodoItem> Html
+@model TodoItem
+@inject ITodoService todoService;
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "All about interesting people";
+}
+
+@functions {
+
+    public async Task<IActionResult> OnPost(TodoItem item)
+    {
+        if (ModelState.IsValid)
+        {
+            await todoService.AddTodoItem(item);
+            return Redirect("/");
+        }
+
+        return View();
+    }
+}
+
+<div class="gr-row">
+    <div class="gr-column-90">
+        <form method="POST">
+            @Html.ValidationSummary()
+            <textarea asp-for="Description" placeholder="What do you want to do?"></textarea>
+            <input type="submit" />
+        </form>
+    </div>
+</div>
+
+<div class="gr-row">
+    <div class="gr-column-90">
+        <dl>
+        @foreach(var todoItem in await todoService.GetTodoItems())
+        {
+            <li>
+                <input type="checkbox" />
+                @todoItem.Description
+            </li>
+        }
+        </dl>
+    </div>
+</div>
